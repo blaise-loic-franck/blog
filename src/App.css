@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+.App{
+  font-family: 'Roboto', sans-serif;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Menu */
+header {
+  border-bottom: 7px double #49364b;
+ background-color:#54636e ;
+ color: white;
+ width: 100vw;
+ font-size:30px;
+}
+#title{
+  
+}
+header span{
+  color: white
+}
+.nav-link.fw-bold{
+  color: white
+}
+.active{
+  background-color: lightgray;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button:hover{
+  text-decoration: underline;
+  
+}
+.button{
+  width: 150px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#lang li{
+  line-height: 55px;
+}
+/* login */
+#hLogin{
+  height:80vh;
+}
+#sizeLogin{
+  width:30vw;
+  
+}
+#sizeMenu{
+  height:95vh;
+}
+#footer{
+  height: 5vh;
+}
+/* footer */
+#up{
+  cursor: pointer;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+#up:hover{
+  background-color: white;
+  color: black;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.font{
+  font-size: 20px;
+}
+.border.size{
+  font-size: 20px;
+  background-color: #888888;
+}
+.border.size:active{
+  font-size: 20px;
+  background-color: #1b1b1b;
+}
+.detail.fond{
+  border-bottom: 7px double #49364b;
+   background-color:#fbe3d3 ;
+}
+.expDetail:not()h1{
+  line-height: 30px;
+  text-indent: 2em;
+}
+.expDetail li{
+  line-height: 40px;
+  text-indent: 2em;
 }
