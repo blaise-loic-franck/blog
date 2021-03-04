@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React  from 'react';
+import { GrHide } from "react-icons/gr";
 import { FaRegTrashAlt,FaPencilAlt  } from "react-icons/fa";
-import { MdPublish  } from "react-icons/md";
+import { MdKeyboardCapslock, MdPublish  } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,12 +10,23 @@ import 'react-toastify/dist/ReactToastify.css';
      const removeClick = ()=>{
 
     }
-    const [isToggle,toggle]= useState(false)
+
+    const keys = JSON.parse(localStorage.getItem('articlesKey'));
+ console.log(props.articles);
+ console.log(keys);
+ if(props.articles == keys){
+     console.log(true)
+ }else{
+    console.log(false)
+
+ }
     return (
         <>
-            {props.articles.map((article, index)=>{
+            
+             {props.articles.map((article, index)=>{ 
 
           return  <div key={index} className="card mb-3">
+              
                     <div className="row ">
                         <div className="col-md-4">
                             <img src={`./Images/${article.image}`} alt="..."  className="col-12"/>
@@ -39,15 +51,25 @@ import 'react-toastify/dist/ReactToastify.css';
                         <div className=" ">
                         <button onClick={()=>{props.editClick(index)}}className=" button mb-3 px-3 py-2 btn-success"> <FaPencilAlt size={25}/><p  className="mb-0 "> Editer </p></button>
                         </div>
-                        <div className=" ">
-                        <button onClick={()=>{props.publishClick(index)},toggle}className=" button mb-3 px-3 py-2 btn-warning"> <MdPublish size={25}/><p  className="mb-0 "> Publier </p></button>
+                        <div>
+                            
+                         
+                         {article[index] == keys[index]              
+                        
+                        ?<button onClick={()=>{props.publishClick(index)}}className=" button mb-3 px-3 py-2 btn-warning"> <MdPublish size={25}/><p  className="mb-0 "> Publier </p></button>
+                        :<button onClick={()=>{props.hideClick(index)}}className=" button mb-3 px-3 py-2 btn-warning"> <GrHide size={25}/><p  className="mb-0 "> Cacher </p></button>
+                        
+                        }
+                        
+                            
                         </div>
                         <p className="fw-bolder">id : {article.id}</p>
-                        <p>{isToggle}</p>
+                        
                         </div>
                         </div>
-                    </div>
- })}
+                    </div> 
+ })
+}
  <ToastContainer/>
         </>
     )

@@ -14,7 +14,8 @@ class Accueil extends Component {
     }
     render() { 
        
-        const articles = JSON.parse(localStorage.getItem('articlesKey'))
+        const articles = JSON.parse(localStorage.getItem('articlesKey'));
+        console.log(localStorage.getItem('articlesKey'))
         return ( 
             <>
             <div className="d-flex justify-content-center mb-3">
@@ -22,7 +23,7 @@ class Accueil extends Component {
                     </div>
             <div className="bg-light p-5 rounded-3">
                 
-              
+                
                {articles.map((article,index)=>{
                     return  <div key={index} className="card mb-3">
                     <div className="row ">

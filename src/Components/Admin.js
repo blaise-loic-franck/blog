@@ -27,6 +27,7 @@ class Admin extends Component {
             editMod:false,
             addMod:false,
             titre: "Administration"
+          
          }
     }
     componentDidMount() {
@@ -47,7 +48,7 @@ class Admin extends Component {
     handleRemove =(index)=>{
         console.group(index)
         let removeArt=[...this.state.articles]
-        let supArt = removeArt.filter((v,id)=>{
+        let supArt = removeArt.filter((a,id)=>{
             return  id !== index
         })
         this.setState({articles:supArt},()=>{
@@ -76,26 +77,35 @@ class Admin extends Component {
         this.setState({articles:addArt, editMod:false},()=>{
             localStorage.setItem('articlesAdd', JSON.stringify(this.state.articles));
         })
-        console.log(this.state.articles)
+        console.log(this.state.articles);
     }
     addClick= ()=>{
-        this.setState({addMod:true})
+        this.setState({addMod:true});
     }
     handlePublish = (index)=>{
-        const publi = JSON.parse(localStorage.getItem('articlesKey'))
-        publi.push(this.state.articles[index])
-        localStorage.setItem('articlesKey',JSON.stringify(publi))
-        toast('Vous avez publié un article avec succes!')
-    
+        const publi = JSON.parse(localStorage.getItem('articlesKey'));
+        publi.push(this.state.articles[index]);
+        localStorage.setItem('articlesKey',JSON.stringify(publi));
+        toast('Vous avez publié un article avec succes!');
+        
     }
-   
+   handleHide = (index)=>{
+    const artChoice = JSON.parse(localStorage.getItem('articlesKey'));
+    const hide = artChoice.filter((a,id)=>{
+        return  id !== index
+    });
+    localStorage.setItem('articlesKey',JSON.stringify(hide));
+    toast('Vous avez caché un article avec succes!');
+    console.log(hide)
+   }
+
     render() { 
         return ( 
             <>
             <div className="text-end bg-light p-3">
             <button  type="button" onClick={this.addClick} className="button me-4 btn-warning fw-bolder "><FaPlus className="" size={30}/><p  className="mb-0 "> Ajouter </p></button>
             </div>
-            <Article articles = {this.state.articles} removeClick ={this.handleRemove} editClick={this.handleEdit} publishClick ={this.handlePublish}/>
+            <Article articles = {this.state.articles} removeClick = {this.handleRemove} editClick={this.handleEdit} publishClick ={this.handlePublish} hideClick ={this.handleHide}/>
             
             <Modal show={this.state.editMod} className=" ">
             <Modal.Header className="h4 bg-secondary d-flex justify-content-center "><p className="mb-0 text-white">Formulaire d'édition</p></Modal.Header>  
