@@ -11,7 +11,7 @@ class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            articles:[   {id:1, image:"slide2.jpg", auteur:"Philippe Sainte-Laudy", date: "2018", lien:"https://www.naturephotographie.com/trouver-son-style-en-photographie/", titre:"TROUVER ET TRAVAILLER SON STYLE EN PHOTOGRAPHIE", corps:"Développer un style en photographie est l’un des aspects les plus passionnants et les plus gratifiants de la photographie. Pour beaucoup de photographes, il s’agit d’un processus continu et en constante évolution, influencé par de nombreux facteurs. Certains photographes trouvent un style unique qui leur convient, auquel ils s’attachent. D’autres peuvent développer deux styles dominants ou plus."},
+            articles:[  {id:1, image:"slide2.jpg", auteur:"Philippe Sainte-Laudy", date: "2018", lien:"https://www.naturephotographie.com/trouver-son-style-en-photographie/", titre:"TROUVER ET TRAVAILLER SON STYLE EN PHOTOGRAPHIE", corps:"Développer un style en photographie est l’un des aspects les plus passionnants et les plus gratifiants de la photographie. Pour beaucoup de photographes, il s’agit d’un processus continu et en constante évolution, influencé par de nombreux facteurs. Certains photographes trouvent un style unique qui leur convient, auquel ils s’attachent. D’autres peuvent développer deux styles dominants ou plus."},
                         {id:2, image:"slide3.jpg", auteur:"The Open Window", date: "26 janvier 2017" , lien:"https://usbeketrica.com/fr/article/une-breve-histoire-de-l-art-video", titre:"Une brève histoire de l’art vidéo", corps:"Depuis sa naissance à l’orée des sixties, l’art vidéo s’est imposé comme l’un des langages artistiques les plus riches et protéiformes de la création contemporaine. Et à l’heure du tout image et de la démocratisation de l’art, il n’a, semble-t-il, rien perdu de sa pertinence."},
                         {id:3, image:"slide4.jpg", auteur:"Kokoroe", date:"2017", lien:"https://www.kokoroe.fr/list/blockchain/article/retouche-photo-ce-qu-il-faut-savoir-519", titre:"Retouche photo : ce qu'il faut savoir !", corps:"Vous prenez des milliers de photos : des paysages, des portraits, des scènes de vie… Tout ce que vous voyez est matière à s’imprimer ! Maintenant que vous regardez votre bibliothèque de photographie, vous êtes satisfait…"}
             ],
@@ -33,17 +33,20 @@ class Admin extends Component {
     componentDidMount() {
         const titre = this.state.titre
         this.props.give(titre)
-        let articles1= JSON.parse(localStorage.getItem('articlesKey'))
+        let articles1= this.state.article
         let articlesadd = JSON.parse(localStorage.getItem('articlesAdd'));
+        localStorage.setItem('articlesAdd', JSON.stringify(this.state.articles));
         if(!articles1 || articles1.length === 0){
-            localStorage.setItem('articlesAdd', JSON.stringify(this.state.articles));
-            localStorage.setItem('articlesKey', JSON.stringify(this.state.articles));
-            let recupArt = JSON.parse(localStorage.getItem('articlesKey'));
-            this.setState({articles:recupArt});
+            
+            toast("Vous n'avez plus d'article afficher!")
                    }else{
             let articles2= JSON.parse(localStorage.getItem('articlesAdd'));
             this.setState({articles:articles2});
+            
         }
+    }
+    componentDidUpdate(){
+        console.log(this.state.articles)
     }
     handleRemove =(index)=>{
         console.group(index)
@@ -87,16 +90,24 @@ class Admin extends Component {
         publi.push(this.state.articles[index]);
         localStorage.setItem('articlesKey',JSON.stringify(publi));
         toast('Vous avez publié un article avec succes!');
-        
+        window.location.reload(false);
     }
    handleHide = (index)=>{
+    const artavant = this.state.articles.concat(this.state.articles[index]);
+    const supMove = artavant.filter((a,id)=>{
+        return  id !== index
+    });
+    
+    this.setState({articles:supMove})
+    console.log(supMove)
+
     const artChoice = JSON.parse(localStorage.getItem('articlesKey'));
     const hide = artChoice.filter((a,id)=>{
         return  id !== index
     });
     localStorage.setItem('articlesKey',JSON.stringify(hide));
     toast('Vous avez caché un article avec succes!');
-    console.log(hide)
+
    }
 
     render() { 

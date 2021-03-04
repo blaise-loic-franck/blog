@@ -1,7 +1,7 @@
 import React  from 'react';
 import { GrHide } from "react-icons/gr";
 import { FaRegTrashAlt,FaPencilAlt  } from "react-icons/fa";
-import { MdKeyboardCapslock, MdPublish  } from "react-icons/md";
+import { MdPublish  } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,18 +12,11 @@ import 'react-toastify/dist/ReactToastify.css';
     }
 
     const keys = JSON.parse(localStorage.getItem('articlesKey'));
- console.log(props.articles);
- console.log(keys);
- if(props.articles == keys){
-     console.log(true)
- }else{
-    console.log(false)
 
- }
+ console.log(props.articles)
     return (
         <>
-            
-             {props.articles.map((article, index)=>{ 
+            {props.articles.map((article, index)=>{ 
 
           return  <div key={index} className="card mb-3">
               
@@ -70,10 +63,10 @@ import 'react-toastify/dist/ReactToastify.css';
                     </div> 
  })
 }
- <ToastContainer/>
+<ToastContainer/>
         </>
     )
-}
+} 
 
 export default Article;
 
