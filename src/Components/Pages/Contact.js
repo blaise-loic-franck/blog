@@ -41,13 +41,10 @@ class Contact extends Component {
             <ul class = "list-unstyled">
                 <li>Blaise Loic</li>
                 <li>loic.blaise.franck@gmail.com</li>
-                <li>06 84 11 37 31</li>
-                <li>91700 Sainte Geneviève des bois</li>
+                <li>Proche de la gare de Saint-Michel-Sur-Orge</li>
             </ul>
         </div>
-        <iframe class="mt-5" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.9256694278088!2d2.332849415897219!3d48.63040442468582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5d94677bf8915%3A0xb8508dc90ece67e1!2s27B%20Rue%20des%20Maisons%20Neuves%2C%2091700%20Sainte-Genevi%C3%A8ve-des-Bois!5e0!3m2!1sfr!2sfr!4v1606404226173!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style={{border:0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-    
-    </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10546.638067474989!2d2.3066244!3d48.6354972!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2c7e5eae85ae5841!2sSaint%20Michel%20Sur%20Orge!5e0!3m2!1sfr!2sfr!4v1615405487448!5m2!1sfr!2sfr" width="800" height="600" allowfullscreen="" loading="lazy"></iframe>    </div>
            </> 
         );
     }
